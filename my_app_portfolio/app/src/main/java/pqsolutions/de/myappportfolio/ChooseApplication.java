@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 public class ChooseApplication extends AppCompatActivity {
 
@@ -19,10 +21,10 @@ public class ChooseApplication extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "My Action New", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -48,5 +50,29 @@ public class ChooseApplication extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void startSpotifyStreamerApp(View view) {
+        showToast("This button will launch my spotify streamer app!");
+    }
+
+    public void startFootballScoresApp(View view) {
+        showToast("This button will launch my football scores app!");
+    }
+
+    public void startLibraryApp(View view) {
+        showToast("This button will launch my library app!");
+    }
+
+    public void startBuildItBiggerApp(View view) {
+        showToast("This button will launch my build it bigger app!");
+    }
+
+    public void startMyCapstoneApp(View view) {
+        showToast("This button will launch my capstone app!");
+    }
+
+    private void showToast(String toastMessage) {
+        Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
     }
 }

@@ -9,6 +9,78 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_choose_application" tools:context=".ChooseApplication">
 
-    <TextView android:text="Hello World!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_nano_degree_aps"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"
+            android:enabled="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textColor="@color/material_grey_900"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
+        <Button
+            android:layout_width="@dimen/app_start_button_width"
+            android:layout_height="wrap_content"
+            android:text="@string/spotify_streamer"
+            android:id="@+id/spotify_streamer_button"
+            android:layout_gravity="center_horizontal"
+            android:background="#F08C35"
+            android:layout_margin="@dimen/app_start_button_margin"
+            android:onClick="startSpotifyStreamerApp"
+            />
+
+        <Button
+            android:layout_width="@dimen/app_start_button_width"
+            android:layout_height="wrap_content"
+            android:text="@string/football_scores_app"
+            android:id="@+id/football_scores_app_button"
+            android:layout_gravity="center_horizontal"
+            android:background="#F08C35"
+            android:layout_margin="@dimen/app_start_button_margin"
+            android:onClick="startFootballScoresApp"
+            />
+
+        <Button
+            android:layout_width="@dimen/app_start_button_width"
+            android:layout_height="wrap_content"
+            android:text="@string/library_app"
+            android:id="@+id/library_app_button"
+            android:background="#F08C35"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/app_start_button_margin"
+            android:onClick="startLibraryApp"
+            />
+
+        <Button
+            android:layout_width="@dimen/app_start_button_width"
+            android:layout_height="wrap_content"
+            android:text="@string/build_it_bigger"
+            android:id="@+id/build_it_bigger_button"
+            android:background="#F08C35"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/app_start_button_margin"
+            android:onClick="startBuildItBiggerApp"
+            />
+
+        <Button
+            android:layout_width="@dimen/app_start_button_width"
+            android:layout_height="wrap_content"
+            android:text="@string/capstone"
+            android:background="#F08C35"
+            android:id="@+id/capstone_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/app_start_button_margin"
+            android:onClick="startMyCapstoneApp"
+            />
+        </LinearLayout>
 </RelativeLayout>
