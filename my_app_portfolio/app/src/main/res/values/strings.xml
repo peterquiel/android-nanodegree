@@ -7,4 +7,9 @@
     <string name="build_it_bigger">BUILD IT BIGGER</string>
     <string name="capstone">CAPSTONE: MY OWN APP</string>
     <string name="my_nano_degree_aps">My Nanodegree Apps!</string>
+    <string name="launch_spotify_app">This button will launch my spotify streamer app!</string>
+    <string name="launch_football_app">This button will launch my football scores app!</string>
+    <string name="launch_lib_app">This button will launch my library app!</string>
+    <string name="launch_build_it_bigger_app">This button will launch my build it bigger app!</string>
+    <string name="launch_my_capstone_app">This button will launch my capstone app!</string>
 </resources>

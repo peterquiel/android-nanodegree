@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 public class ChooseApplication extends AppCompatActivity {
 
+    private Toast toast;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,26 +43,31 @@ public class ChooseApplication extends AppCompatActivity {
     }
 
     public void startSpotifyStreamerApp(View view) {
-        showToast("This button will launch my spotify streamer app!");
+        showToast(R.string.launch_spotify_app);
     }
 
     public void startFootballScoresApp(View view) {
-        showToast("This button will launch my football scores app!");
+        showToast(R.string.launch_football_app);
     }
 
     public void startLibraryApp(View view) {
-        showToast("This button will launch my library app!");
+        showToast(R.string.launch_lib_app);
     }
 
     public void startBuildItBiggerApp(View view) {
-        showToast("This button will launch my build it bigger app!");
+        showToast(R.string.launch_build_it_bigger_app);
     }
 
     public void startMyCapstoneApp(View view) {
-        showToast("This button will launch my capstone app!");
+        showToast(R.string.launch_my_capstone_app);
     }
 
-    private void showToast(String toastMessage) {
-        Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
+    private void showToast(int toastMessageResId) {
+        if (toast == null) {
+            toast = Toast.makeText(getApplicationContext(), toastMessageResId, Toast.LENGTH_SHORT);
+        } else {
+            toast.setText(toastMessageResId);
+        }
+        toast.show();
     }
 }
