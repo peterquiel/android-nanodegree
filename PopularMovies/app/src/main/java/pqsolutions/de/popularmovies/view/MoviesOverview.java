@@ -1,31 +1,42 @@
-package pqsolutions.de.popularmovies;
+package pqsolutions.de.popularmovies.view;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MoviesOverview extends AppCompatActivity {
+import javax.inject.Inject;
+
+import pqsolutions.de.popularmovies.R;
+import pqsolutions.de.popularmovies.data.MovieService;
+import roboguice.activity.RoboActionBarActivity;
+import roboguice.activity.RoboActivity;
+import roboguice.inject.ContentView;
+import roboguice.inject.InjectView;
+
+
+@ContentView(R.layout.activity_movies_overview)
+public class MoviesOverview extends RoboActionBarActivity {
+
+
+    private static final String TAG = MoviesOverview.class.getName();
+
+    @InjectView(R.id.toolbar)
+    private Toolbar toolbar;
+
+    @Inject
+    private MovieService movieService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movies_overview);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        Log.d(TAG, "onCreate() called with: " + this.movieService.getClass().getName());
     }
 
     @Override

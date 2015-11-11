@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">PopularMovies</string>
     <string name="action_settings">Settings</string>
-    <string name="theMovieDbApiKey">INSERT API KEY HERE</string>
+    <string name="theMovieDbApiKey">XXX</string>
 </resources>
