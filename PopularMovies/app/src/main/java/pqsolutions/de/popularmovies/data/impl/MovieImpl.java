@@ -12,26 +12,50 @@ import pqsolutions.de.popularmovies.data.Movie;
  */
 public class MovieImpl implements Movie {
 
-    private final Integer id;
-    private final String title;
-    private final String overview;
-    private final Date releaseDate;
-    private final String backdropPath;
-    private final String posterPath;
-    private final Double popularity;
-    private final Double voteAverage;
-    private final Integer voteCount;
-    private final List<Genre> genres = new ArrayList<>();
+    private Integer id;
+    private String title;
+    private String overview;
+    private Date releaseDate;
+    private String backdropPath;
+    private String posterPath;
+    private Double popularity;
+    private Double voteAverage;
+    private Integer voteCount;
+    private List<Genre> genres = new ArrayList<>();
 
-    public MovieImpl(Integer id, String title, String overview, Date releaseDate, String backdropPath, String posterPath, Double popularity, Double voteAverage, Integer voteCount) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
+    }
+
+    public void setPosterPath(String posterPath) {
         this.posterPath = posterPath;
+    }
+
+    public void setPopularity(Double popularity) {
         this.popularity = popularity;
+    }
+
+    public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
+    }
+
+    public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
     }
 
@@ -85,6 +109,8 @@ public class MovieImpl implements Movie {
         this.addGenre(genre);
         return this;
     }
+
+
 
     @Override
     public List<Genre> getGenres() {

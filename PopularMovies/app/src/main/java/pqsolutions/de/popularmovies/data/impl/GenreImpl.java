@@ -7,11 +7,14 @@ import pqsolutions.de.popularmovies.data.Genre;
  */
 public class GenreImpl implements Genre {
 
-    private final int id;
-    private final String name;
+    private int id;
+    private String name;
 
-    public GenreImpl(int id, String name) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
