@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+>
+
+    <item android:id="@+id/action_item_share" android:icon="@android:drawable/ic_menu_share" app:showAsAction="ifRoom"
+          android:title="Share" android:orderInCategory="50">
+        <menu>
+            <item android:id="@+id/menu_item_friends" android:title="Friends" android:orderInCategory="100"
+                  app:showAsAction="never" android:actionProviderClass="android.widget.ShareActionProvider"/>
+            <item android:id="@+id/menu_item_notewhere" android:title="Notewhere"
+                  app:showAsAction="never" android:actionProviderClass="android.widget.ShareActionProvider"
+                  android:orderInCategory="110"/>
+            <item android:id="@+id/menu_item_drivebox" android:title="Drivebox"
+                  app:showAsAction="never" android:actionProviderClass="android.widget.ShareActionProvider"
+                  android:orderInCategory="120"/>
+        </menu>
+    </item>
+
+    <item android:id="@+id/menu_item_send" android:orderInCategory="80" android:icon="@android:drawable/ic_dialog_email"
+          app:showAsAction="ifRoom" android:actionProviderClass="android.widget.ShareActionProvider" android:title="Send"/>
+</menu>

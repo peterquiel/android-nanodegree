@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <EditTextPreference android:title="@string/location_setting_title"
+                        android:key="@string/location_preference_key"
+                        android:defaultValue="Paderborn"
+                        android:summary="@string/loction_setting_summary"/>
+    <ListPreference android:entries="@array/unitEntries"
+                    android:entryValues="@array/unitValues"
+                    android:title="@string/unit_setting_title"
+                    android:key="@string/unit_preference_key"
+                    android:defaultValue="metric"
+                    android:summary="@string/unit_setting_summary" />
+</PreferenceScreen>

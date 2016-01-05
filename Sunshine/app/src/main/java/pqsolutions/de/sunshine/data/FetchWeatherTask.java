@@ -1,4 +1,4 @@
-package pqsolutions.de.sunshine;
+package pqsolutions.de.sunshine.data;
 
 
 import android.net.Uri;
@@ -11,39 +11,51 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Peter Quiel on 29.10.15.
  */
-public class FetchWeatherTask extends AsyncTask<Void, Void, String> {
+public class FetchWeatherTask extends AsyncTask<String, Void, List<WeatherData>> {
 
     public static final String LOG_TAG = FetchWeatherTask.class.getName();
     private final String openWeatherApiKey;
+    private final Function<List<WeatherData>> function;
 
-    public FetchWeatherTask(String openWeatherApiKey) {
+    public FetchWeatherTask(String openWeatherApiKey, Function<List<WeatherData>> function) {
         this.openWeatherApiKey = openWeatherApiKey;
+        this.function = function;
     }
 
     @Override
-    protected String doInBackground(Void... params) {
+    protected List<WeatherData> doInBackground(String... params) {
+        String unit = "metric";
+        String location = "Paderborn";
+        if (params != null && params.length == 2) {
+            if (params[0] != null) {
+                unit = params[0];
+            }
+            if (params[1] != null) {
+                location = params[1];
+            }
+        }
         // These two need to be declared outside the try/catch
         // so that they can be closed in the finally block.
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
 
-        // Will contain the raw JSON response as a string.
-        String forecastJsonStr = null;
-
         Uri.Builder builder = new Uri.Builder();
         Uri uri = builder.scheme("http").authority("api.openweathermap.org")
                 .appendPath("data")
                 .appendPath("2.5")
-                .appendPath("forecarst")
+                .appendPath("forecast")
                 .appendPath("daily")
-                .appendQueryParameter("zip", "33100,de")
+                .appendQueryParameter("q", location)
                 .appendQueryParameter("cnt", "7")
-                .appendQueryParameter("units", "metric")
-                .appendQueryParameter("mode", "jason")
+                .appendQueryParameter("units", unit)
+                .appendQueryParameter("mode", "json")
                 .appendQueryParameter("appId", this.openWeatherApiKey).build();
         try {
             // Construct the URL for the OpenWeatherMap query
@@ -78,8 +90,8 @@ public class FetchWeatherTask extends AsyncTask<Void, Void, String> {
                 // Stream was empty.  No point in parsing.
                 return null;
             }
-            return buffer.toString();
-        } catch (IOException e) {
+            return new WeatherDataParser().parseWeatherData(buffer.toString(), new Date());
+        } catch (Exception e) {
             Log.e(LOG_TAG, "Error ", e);
             // If the code didn't successfully get the weather data, there's no point in attemping
             // to parse it.
@@ -96,5 +108,18 @@ public class FetchWeatherTask extends AsyncTask<Void, Void, String> {
                 }
             }
         }
+    }
+
+    @Override
+    protected void onPostExecute(List<WeatherData> result) {
+        if (this.function != null) {
+            this.function.onPostExecute(result);
+        } else {
+            Log.e(LOG_TAG, "Could not invoke function because its null");
+        }
+    }
+
+    public interface Function<T> {
+        void onPostExecute(T result);
     }
 }
