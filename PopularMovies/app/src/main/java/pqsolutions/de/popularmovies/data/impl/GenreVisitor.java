@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by pedda on 12.11.15.
  */
-public class GenereVisitor implements JsonVisitor {
+public class GenreVisitor implements JsonVisitor {
 
     private List<Genre> genres = new ArrayList<>();
     private GenreImpl genre = new GenreImpl();

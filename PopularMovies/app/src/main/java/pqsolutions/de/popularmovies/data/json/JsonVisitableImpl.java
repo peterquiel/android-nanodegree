@@ -106,7 +106,7 @@ public class JsonVisitableImpl implements JsonVisitable, JsonVisitor {
         if (value != null) {
             for (int i = 0; i < value.length(); i++) {
                 Object nextValue = value.get(i);
-                this.handle(i + "", nextValue);
+                this.handle(key + ":" + i, nextValue);
             }
         }
     }

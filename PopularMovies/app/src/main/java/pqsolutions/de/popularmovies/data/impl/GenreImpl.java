@@ -10,12 +10,14 @@ public class GenreImpl implements Genre {
     private int id;
     private String name;
 
-    public void setId(int id) {
+    public GenreImpl setId(int id) {
         this.id = id;
+        return this;
     }
 
-    public void setName(String name) {
+    public GenreImpl setName(String name) {
         this.name = name;
+        return this;
     }
 
     public int getId() {

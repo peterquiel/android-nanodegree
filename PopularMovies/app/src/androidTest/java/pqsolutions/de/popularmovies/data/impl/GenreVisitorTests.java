@@ -12,16 +12,16 @@ import java.util.List;
 /**
  * Created by pedda on 12.11.15.
  */
-public class GenerVisitorTests extends ApplicationTestCase<Application> {
+public class GenreVisitorTests extends ApplicationTestCase<Application> {
 
 
-    public GenerVisitorTests() {
+    public GenreVisitorTests() {
         super(Application.class);
     }
 
     public void test_deserializing_genre() throws Exception{
         String jsonString = IOUtils.toString(this.getClass().getClassLoader().getResourceAsStream("smal_genre.json"));
-        GenereVisitor visitor = new GenereVisitor();
+        GenreVisitor visitor = new GenreVisitor();
         new JsonVisitableImpl().use(new JSONObject(jsonString)).accept(visitor);
 
         List<Genre> genres = visitor.getGenres();

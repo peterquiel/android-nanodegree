@@ -106,7 +106,7 @@ public class MovieImpl implements Movie {
 
     @Override
     public Movie addGenre(Genre genre) {
-        this.addGenre(genre);
+        this.genres.add(genre);
         return this;
     }
 

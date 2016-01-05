@@ -1,6 +1,5 @@
 package pqsolutions.de.popularmovies.data.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import pqsolutions.de.popularmovies.data.Movie;
@@ -14,12 +13,13 @@ public class MovieSearchResultImpl implements MovieSearchResult {
     private final int totalPages;
     private final int page;
     private final int totalResults;
-    private final List<Movie> movies = new ArrayList<>();
+    private final List<Movie> movies;
 
-    public MovieSearchResultImpl(int totalPages, int page, int totalResults) {
+    public MovieSearchResultImpl(int page, int totalPages, int totalResults, List<Movie> movies) {
         this.totalPages = totalPages;
         this.page = page;
         this.totalResults = totalResults;
+        this.movies = movies;
     }
 
     @Override
@@ -41,4 +41,6 @@ public class MovieSearchResultImpl implements MovieSearchResult {
     public List<Movie> movies() {
         return this.movies;
     }
+
+
 }

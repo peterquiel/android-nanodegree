@@ -7,8 +7,27 @@ import java.util.List;
  */
 public interface MovieService {
 
-    MovieSearchResult popular(int page);
+    MovieSearchResult popular(int page) throws MovieServiceException;
 
-    MovieSearchResult topRated(int page);
+    MovieSearchResult topRated(int page) throws MovieServiceException;
 
+    List<Genre> genre() throws MovieServiceException;
+
+    public static class MovieServiceException extends Exception {
+
+        public MovieServiceException() {
+        }
+
+        public MovieServiceException(String detailMessage) {
+            super(detailMessage);
+        }
+
+        public MovieServiceException(String detailMessage, Throwable throwable) {
+            super(detailMessage, throwable);
+        }
+
+        public MovieServiceException(Throwable throwable) {
+            super(throwable);
+        }
+    }
 }

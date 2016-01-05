@@ -85,7 +85,11 @@ public class MovieVisitor implements JsonVisitor {
 
     @Override
     public void handle(String key, JSONArray value) throws JSONException {
-
+        if ("genre_ids".equals(key)) {
+            for (int i = 0; i < value.length(); i++) {
+                this.movie.addGenre(new GenreImpl().setId(value.getInt(i)));
+            }
+        }
     }
 
     public List<Movie> getMovies() {
