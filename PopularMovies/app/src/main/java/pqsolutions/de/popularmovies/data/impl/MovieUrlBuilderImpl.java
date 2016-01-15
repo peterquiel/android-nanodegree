@@ -8,9 +8,14 @@ import pqsolutions.de.popularmovies.data.MovieUrlBuilder;
  */
 public class MovieUrlBuilderImpl implements MovieUrlBuilder, MovieUrlBuilder.CommonParameterBuilder, MovieUrlBuilder.PageableBuilder {
 
-    private final Uri.Builder builder = new Uri.Builder();
+    private Uri.Builder builder;
 
     public MovieUrlBuilderImpl() {
+        initBuilder();
+    }
+
+    private void initBuilder() {
+        this.builder = new Uri.Builder();
         this.builder.scheme("https").authority("api.themoviedb.org")
                 .appendPath("3");
     }
@@ -50,6 +55,10 @@ public class MovieUrlBuilderImpl implements MovieUrlBuilder, MovieUrlBuilder.Com
 
     @Override
     public String apiKey(String apiKey) {
-        return this.builder.appendQueryParameter("api_key", apiKey).build().toString();
+        try {
+            return this.builder.appendQueryParameter("api_key", apiKey).build().toString();
+        } finally {
+            initBuilder();
+        }
     }
 }

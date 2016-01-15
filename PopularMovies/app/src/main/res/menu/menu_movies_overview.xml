@@ -1,6 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MoviesOverview">
-    <item android:id="@+id/action_settings" android:title="new settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools" tools:context=".MoviesOverview">
+    <item android:id="@+id/popular_movie_settings" android:title="@string/popularMovies"
+          android:orderInCategory="100" app:showAsAction="never"/>
+    <item android:id="@+id/top_rated_settings" android:title="@string/topRated"
+          android:orderInCategory="200" app:showAsAction="never"/>
 </menu>

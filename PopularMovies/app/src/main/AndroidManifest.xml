@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pqsolutions.de.popularmovies" >
+          package="pqsolutions.de.popularmovies">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
         <activity
-                android:name=".view.MoviesActivity" android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar" >
+                android:name=".view.MainActivity"
+                android:label="@string/app_name"
+                android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <meta-data android:name="roboguice.modules"  android:value="pqsolutions.de.popularmovies.cdi.ApplicationModul" />
+        <!--use this module if there is no internet access-->
+        <!--<meta-data android:name="roboguice.modules" android:value="pqsolutions.de.popularmovies.cdi.ApplicationModule,pqsolutions.de.popularmovies.cdi.OfflineModule"/>-->
+
+         <meta-data android:name="roboguice.modules" android:value="pqsolutions.de.popularmovies.cdi.ApplicationModule, pqsolutions.de.popularmovies.cdi.OnlineModule"/>
+        <activity
+                android:name=".view.MovieDetailActivity"
+                android:label="@string/title_activity_movie_detail"
+                android:theme="@style/AppTheme.NoActionBar"
+                android:parentActivityName=".view.MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".view.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

@@ -43,7 +43,7 @@ public class MovieVisitorTests extends ApplicationTestCase<Application> {
         assertEquals(((Integer) 206647), spectre.getId());
         assertTrue(spectre.getOverview().startsWith("A cryptic message from"));
         assertEquals(49.48668, spectre.getPopularity());
-        assertEquals(6.7, spectre.getVoteAverage());
+        assertEquals(6.7, spectre.getRating());
         assertEquals(((Integer) 394), spectre.getVoteCount());
         assertEquals("/1n9D32o30XOHMdMWuIT4AaA5ruI.jpg", spectre.getPosterPath());
         assertEquals("/wVTYlkKPKrljJfugXN7UlLNjtuJ.jpg", spectre.getBackdropPath());
@@ -56,7 +56,7 @@ public class MovieVisitorTests extends ApplicationTestCase<Application> {
         assertTrue(jurassicWorld.getOverview().startsWith("Twenty-two years after the events"));
         assertEquals(47.576869, jurassicWorld.getPopularity());
         assertEquals("/jjBgi2r5cRt36xF6iNUEhzscEcb.jpg", jurassicWorld.getPosterPath());
-        assertEquals(6.9, jurassicWorld.getVoteAverage());
+        assertEquals(6.9, jurassicWorld.getRating());
         assertEquals(((Integer) 2932), jurassicWorld.getVoteCount());
         assertEquals("12062015", dateFormat.format(jurassicWorld.getReleaseDate()));
     }

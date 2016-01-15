@@ -9,7 +9,28 @@ import pqsolutions.de.popularmovies.util.Function;
 public interface MovieLoaderTask {
 
     enum Params {
-        TOP_RATED, MOST_POPULAR;
+        TOP_RATED(1), MOST_POPULAR(2);
+
+        private final int key;
+
+        Params(int key) {
+            this.key = key;
+        }
+
+        public static Params fromInt(Integer key) {
+            if (key != null) {
+                for (Params params : values()) {
+                    if (params.getKey() == key) {
+                        return params;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public int getKey() {
+            return key;
+        }
     }
 
     void loadMovies(Params params);

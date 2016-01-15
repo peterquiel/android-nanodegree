@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 // This does not break the build when Android Studio is missing the JRebel for Android plugin.
-apply plugin: 'com.zeroturnaround.jrebel.android'
+//apply plugin: 'com.zeroturnaround.jrebel.android'
 
 android {
     compileSdkVersion 23
@@ -21,7 +21,7 @@ android {
     }
 
     buildTypes.each {
-        it.buildConfigField 'String', 'OPEN_WEATHER_MAP_API_KEY', '""'
+        it.buildConfigField 'String', 'OPEN_WEATHER_MAP_API_KEY', '"89f84b01774d918b3677426517403cb8"'
     }
 }
 

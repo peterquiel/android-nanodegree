@@ -59,22 +59,22 @@ public class ForecastFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.forecast_main, container, false);
+        return inflater.inflate(R.layout.forecast_main, container, false);
 
-        forcastDataAdapter = new CustomAdapter(getContext());
-        ListView forecastListview = (ListView) rootView.findViewById(R.id.listview_forecast);
-        forecastListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), WeatherDetailActivity.class);
-                intent.putExtra("WEATHER_DATA", ((Parcelable) forcastDataAdapter.getItem(position)));
-                startActivity(intent);
-            }
-        });
-        forecastListview.setAdapter(forcastDataAdapter);
-        loadWeatherForecastData();
-        return rootView;
+//        forcastDataAdapter = new CustomAdapter(getContext());
+//        ListView forecastListview = (ListView) rootView.findViewById(R.id.listview_forecast);
+//        forecastListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getActivity(), WeatherDetailActivity.class);
+//                intent.putExtra("WEATHER_DATA", ((Parcelable) forcastDataAdapter.getItem(position)));
+//                startActivity(intent);
+//            }
+//        });
+//        forecastListview.setAdapter(forcastDataAdapter);
+//        loadWeatherForecastData();
+//        return rootView;
     }
 
     @Override

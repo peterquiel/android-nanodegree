@@ -11,7 +11,7 @@ import pqsolutions.de.popularmovies.util.Function;
 /**
  * Created by pedda on 05.01.16.
  */
-public class MovieLoaderTaskImpl extends AsyncTask<MovieLoaderTask.Params, Void, MovieSearchResult> implements MovieLoaderTask {
+public class MovieLoaderTaskImpl implements MovieLoaderTask {
 
     private static final String TAG = MovieLoaderTaskImpl.class.getSimpleName();
 
@@ -22,25 +22,10 @@ public class MovieLoaderTaskImpl extends AsyncTask<MovieLoaderTask.Params, Void,
     private MovieService.MovieServiceException exceptionDuringDataLoading;
     private Function<MovieService.MovieServiceException, Void> executeWhenErrorOccurred;
 
-    @Override
-    protected MovieSearchResult doInBackground(Params... params) {
-        try {
-            switch (params != null && params.length == 0 ? Params.MOST_POPULAR : params[0]) {
-                case MOST_POPULAR:
-                    return this.movieService.popular(0);
-                default:
-                    return this.movieService.topRated(0);
-            }
-        } catch (MovieService.MovieServiceException e) {
-            exceptionDuringDataLoading = e;
-            Log.d(TAG, "Could not load movies from movie service. Returning null", e);
-        }
-        return null;
-    }
 
     @Override
     public void loadMovies(Params params) {
-        execute(params);
+        new BackgroundLoader().execute(params);
     }
 
     @Override
@@ -53,24 +38,44 @@ public class MovieLoaderTaskImpl extends AsyncTask<MovieLoaderTask.Params, Void,
         this.executeWhenErrorOccurred = executeWhenErrorOccurred;
     }
 
-    @Override
-    protected void onPostExecute(MovieSearchResult movieSearchResult) {
-        try {
-            if (this.executeWhenMoviesLoaded != null) {
-                if (this.exceptionDuringDataLoading != null) {
-                    if (this.executeWhenErrorOccurred != null) {
-                        this.executeWhenErrorOccurred.apply(this.exceptionDuringDataLoading);
+
+    class BackgroundLoader extends AsyncTask<MovieLoaderTask.Params, Void, MovieSearchResult> {
+
+        @Override
+        protected MovieSearchResult doInBackground(Params... params) {
+            try {
+                switch (params[0] == null ? Params.MOST_POPULAR : params[0]) {
+                    case MOST_POPULAR:
+                        return movieService.popular(1);
+                    default:
+                        return movieService.topRated(1);
+                }
+            } catch (MovieService.MovieServiceException e) {
+                exceptionDuringDataLoading = e;
+                Log.d(TAG, "Could not load movies from movie service. Returning null", e);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(MovieSearchResult movieSearchResult) {
+            try {
+                if (executeWhenMoviesLoaded != null) {
+                    if (exceptionDuringDataLoading != null) {
+                        if (executeWhenErrorOccurred != null) {
+                            executeWhenErrorOccurred.apply(exceptionDuringDataLoading);
+                        } else {
+                            Log.d(TAG, "Error occurred during data loading but no error handler was set");
+                        }
                     } else {
-                        Log.d(TAG, "Error occurred during data loading but no error handler was set");
+                        executeWhenMoviesLoaded.apply(movieSearchResult);
                     }
                 } else {
-                    this.executeWhenMoviesLoaded.apply(movieSearchResult);
+                    Log.d(TAG, "onPostExecute: no function set, please set function callback before loading movies!");
                 }
-            } else {
-                Log.d(TAG, "onPostExecute: no function set, please set function callback before loading movies!");
+            } finally {
+                exceptionDuringDataLoading = null;
             }
-        } finally {
-            this.exceptionDuringDataLoading = null;
         }
     }
 }

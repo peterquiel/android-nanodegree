@@ -1,12 +1,13 @@
 package pqsolutions.de.popularmovies.data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Peter Quiel on 11.11.15.
  */
-public interface Movie {
+public interface Movie extends Serializable{
 
     Integer getId();
 
@@ -22,7 +23,7 @@ public interface Movie {
 
     Double getPopularity();
 
-    Double getVoteAverage();
+    Double getRating();
 
     Integer getVoteCount();
 

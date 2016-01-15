@@ -18,12 +18,14 @@ public class JsonVisitableImpl implements JsonVisitable, JsonVisitor {
     @Override
     public JsonVisitable use(JSONArray jsonArray) {
         this.jsonArray = jsonArray;
+        this.jsonObject = null;
         return this;
     }
 
     @Override
     public JsonVisitable use(JSONObject jsonObject) {
         this.jsonObject = jsonObject;
+        this.jsonArray = null;
         return this;
     }
 

@@ -95,7 +95,7 @@ public class MovieImpl implements Movie {
     }
 
     @Override
-    public Double getVoteAverage() {
+    public Double getRating() {
         return voteAverage;
     }
 
