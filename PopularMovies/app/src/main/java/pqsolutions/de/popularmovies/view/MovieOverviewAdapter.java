@@ -12,6 +12,7 @@ import pqsolutions.de.popularmovies.data.Movie;
 import pqsolutions.de.popularmovies.util.MovieImageHandler;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,11 +30,15 @@ public class MovieOverviewAdapter extends BaseAdapter {
     @Inject
     private Context context;
 
-    private List<Movie> movieList;
+    private ArrayList<Movie> movieList;
 
-    public void setMovieList(List<Movie> movieList) {
+    public void setMovieList(ArrayList<Movie> movieList) {
         this.movieList = movieList;
         this.notifyDataSetChanged();
+    }
+
+    public ArrayList<Movie> getMovieList() {
+        return movieList;
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +20,6 @@ import roboguice.inject.InjectView;
 
 import javax.inject.Inject;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MovieDetailFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MovieDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MovieDetailFragment extends RoboFragment {
 
     @InjectResource(R.string.movieDataExtra)
@@ -58,14 +51,18 @@ public class MovieDetailFragment extends RoboFragment {
 
     private Movie movie;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        Intent intent = getActivity().getIntent();
-        if (intent != null && intent.getSerializableExtra(this.movieDataExtra) != null) {
-            movie = ((Movie) intent.getSerializableExtra(this.movieDataExtra));
+        if (savedInstanceState != null) {
+            this.movie = savedInstanceState.getParcelable("movie");
+        } else {
+            final Intent intent = getActivity().getIntent();
+            if (intent != null) {
+                movie = intent.getParcelableExtra(this.movieDataExtra);
+            } else {
+                movie = null;
+            }
         }
         return inflater.inflate(R.layout.fragment_movie_detailed, container, false);
     }
@@ -73,13 +70,19 @@ public class MovieDetailFragment extends RoboFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (this.movie != null) {
+        if (movie != null) {
             this.originalTitleView.setText(movie.getTitle());
             this.plotSynopsisView.setText(movie.getOverview());
             this.releaseDateView.setText(context.getString(R.string.movieDetailReleaseDate, movie.getReleaseDate()));
             this.ratingView.setText(context.getString(R.string.movieDetailRating, movie.getRating()));
             this.voteCountView.setText(context.getString(R.string.movieDetailVotes, movie.getVoteCount()));
-            this.movieImageHandler.putPosterInDetailIntoTarget(this.movie, this.posterImage);
+            this.movieImageHandler.putPosterInDetailIntoTarget(movie, this.posterImage);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable("movie", this.movie);
+        this.movie = null;
     }
 }

@@ -3,12 +3,14 @@ package pqsolutions.de.popularmovies.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import pqsolutions.de.popularmovies.R;
+import pqsolutions.de.popularmovies.data.Movie;
 import pqsolutions.de.popularmovies.data.MovieLoaderTask;
 import pqsolutions.de.popularmovies.data.MovieSearchResult;
 import pqsolutions.de.popularmovies.util.Function;
@@ -17,9 +19,10 @@ import roboguice.inject.InjectResource;
 import roboguice.inject.InjectView;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 
 
-public class MovieOverviewFragment extends RoboFragment implements Function<MovieSearchResult, Void>, SharedPreferences.OnSharedPreferenceChangeListener {
+public class MovieOverviewFragment extends RoboFragment implements Function<MovieSearchResult, Void>, SharedPreferences.OnSharedPreferenceChangeListener, AdapterView.OnItemClickListener {
 
     @Inject
     private SharedPreferences sharedPreferences;
@@ -53,20 +56,22 @@ public class MovieOverviewFragment extends RoboFragment implements Function<Movi
 
 
     @Override
+    @SuppressWarnings("unchecked")
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         movieOverviewGrid.setAdapter(this.movieOverviewAdapter);
-        movieOverviewGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(movieOverviewGrid.getContext(), MovieDetailActivity.class);
-                intent.putExtra(movieDataExtra, movieOverviewAdapter.getItem(position));
-                startActivity(intent);
-            }
-        });
+        movieOverviewGrid.setOnItemClickListener(this);
         movieLoaderTask.setOnLoadFinishedHandler(this);
-        loadMovieData();
+        if (savedInstanceState == null) {
+            loadMovieData();
+        } else {
+            ArrayList movieList = savedInstanceState.getParcelableArrayList("movieList");
+            if (movieList != null) {
+                this.movieOverviewAdapter.setMovieList(movieList);
+            }
+        }
     }
+
 
     private void loadMovieData() {
         MovieLoaderTask.Params sorting = MovieLoaderTask.Params.fromInt(sharedPreferences.getInt(movieSortingPreferenceKey, 1));
@@ -75,7 +80,7 @@ public class MovieOverviewFragment extends RoboFragment implements Function<Movi
 
     @Override
     public Void apply(MovieSearchResult parameter) {
-        this.movieOverviewAdapter.setMovieList(parameter.movies());
+        this.movieOverviewAdapter.setMovieList((ArrayList<Movie>) parameter.movies());
         return null;
     }
 
@@ -83,6 +88,11 @@ public class MovieOverviewFragment extends RoboFragment implements Function<Movi
     public void onPause() {
         super.onPause();
         this.sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList("movieList", this.movieOverviewAdapter.getMovieList());
     }
 
     @Override
@@ -96,5 +106,12 @@ public class MovieOverviewFragment extends RoboFragment implements Function<Movi
         if (this.movieSortingPreferenceKey.equals(key)) {
             this.loadMovieData();
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(movieOverviewGrid.getContext(), MovieDetailActivity.class);
+        intent.putExtra(movieDataExtra, movieOverviewAdapter.getItem(position));
+        startActivity(intent);
     }
 }

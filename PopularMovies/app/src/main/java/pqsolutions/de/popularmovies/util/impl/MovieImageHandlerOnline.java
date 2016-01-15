@@ -1,7 +1,9 @@
 package pqsolutions.de.popularmovies.util.impl;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import pqsolutions.de.popularmovies.R;
 import pqsolutions.de.popularmovies.data.Movie;
@@ -31,7 +33,7 @@ public class MovieImageHandlerOnline implements MovieImageHandler {
     }
 
     @Override
-    public void putPosterInDetailIntoTarget(Movie movie, ImageView image) {
+    public void putPosterInDetailIntoTarget(Movie movie, final ImageView image) {
         Picasso.with(context).setIndicatorsEnabled(true);
         Picasso.with(context).load(context.getString(R.string.imagesUrl, posterDetailSize, movie.getPosterPath())).into(image);
     }
