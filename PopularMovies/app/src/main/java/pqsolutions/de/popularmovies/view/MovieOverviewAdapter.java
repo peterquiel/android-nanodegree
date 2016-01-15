@@ -13,7 +13,6 @@ import pqsolutions.de.popularmovies.util.MovieImageHandler;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by pedda on 13.01.16.
@@ -32,13 +31,13 @@ public class MovieOverviewAdapter extends BaseAdapter {
 
     private ArrayList<Movie> movieList;
 
+    public ArrayList<Movie> getMovieList() {
+        return movieList;
+    }
+
     public void setMovieList(ArrayList<Movie> movieList) {
         this.movieList = movieList;
         this.notifyDataSetChanged();
-    }
-
-    public ArrayList<Movie> getMovieList() {
-        return movieList;
     }
 
     @Override

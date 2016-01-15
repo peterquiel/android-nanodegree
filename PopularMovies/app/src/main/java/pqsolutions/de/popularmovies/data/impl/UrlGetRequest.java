@@ -13,7 +13,7 @@ import java.net.URL;
 /**
  * Created by pedda on 26.11.15.
  */
-public class UrlGetRequest implements Request{
+public class UrlGetRequest implements Request {
 
     private static final String LOG_TAG = "UrlGetRequest";
 

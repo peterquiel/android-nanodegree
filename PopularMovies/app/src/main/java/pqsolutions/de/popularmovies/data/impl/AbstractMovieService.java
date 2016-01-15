@@ -8,7 +8,6 @@ import pqsolutions.de.popularmovies.data.MovieService;
 import pqsolutions.de.popularmovies.data.json.JsonVisitable;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 
 /**
  * Created by pedda on 05.01.16.

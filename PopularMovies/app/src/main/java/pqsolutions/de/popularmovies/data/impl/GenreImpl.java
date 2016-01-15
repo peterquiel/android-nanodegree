@@ -9,9 +9,6 @@ import pqsolutions.de.popularmovies.data.Genre;
  */
 public class GenreImpl implements Genre {
 
-    private int id;
-    private String name;
-
     public static final Parcelable.Creator<Genre> CREATOR = new Parcelable.Creator<Genre>() {
         @Override
         public Genre createFromParcel(Parcel source) {
@@ -27,22 +24,26 @@ public class GenreImpl implements Genre {
         }
     };
 
-    public GenreImpl setId(int id) {
-        this.id = id;
-        return this;
-    }
+    private int id;
 
-    public GenreImpl setName(String name) {
-        this.name = name;
-        return this;
-    }
+    private String name;
 
     public int getId() {
         return id;
     }
 
+    public GenreImpl setId(int id) {
+        this.id = id;
+        return this;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public GenreImpl setName(String name) {
+        this.name = name;
+        return this;
     }
 
     @Override

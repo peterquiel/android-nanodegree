@@ -15,6 +15,7 @@ import java.util.List;
 public class GenreVisitor implements JsonVisitor {
 
     private List<Genre> genres = new ArrayList<>();
+
     private GenreImpl genre = new GenreImpl();
 
 

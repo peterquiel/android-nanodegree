@@ -2,7 +2,7 @@ package pqsolutions.de.popularmovies.data;
 
 /**
  * Used to build the url for different kind of movie db request.
- * <p>
+ * <p/>
  * Created by pedda on 26.11.15.
  */
 public interface MovieUrlBuilder {

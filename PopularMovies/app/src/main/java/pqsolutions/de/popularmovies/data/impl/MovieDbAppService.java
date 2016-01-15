@@ -1,7 +1,5 @@
 package pqsolutions.de.popularmovies.data.impl;
 
-import android.support.annotation.NonNull;
-import com.google.inject.Provider;
 import org.json.JSONException;
 import org.json.JSONObject;
 import pqsolutions.de.popularmovies.R;

@@ -1,8 +1,6 @@
 package pqsolutions.de.popularmovies.cdi;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Provider;
-import com.google.inject.TypeLiteral;
 import pqsolutions.de.popularmovies.data.MovieService;
 import pqsolutions.de.popularmovies.data.MovieUrlBuilder;
 import pqsolutions.de.popularmovies.data.Request;
@@ -10,7 +8,6 @@ import pqsolutions.de.popularmovies.data.impl.MovieDbAppService;
 import pqsolutions.de.popularmovies.data.impl.MovieUrlBuilderImpl;
 import pqsolutions.de.popularmovies.data.impl.UrlGetRequest;
 import pqsolutions.de.popularmovies.util.MovieImageHandler;
-import pqsolutions.de.popularmovies.util.impl.MovieImageHandlerOffline;
 import pqsolutions.de.popularmovies.util.impl.MovieImageHandlerOnline;
 
 /**

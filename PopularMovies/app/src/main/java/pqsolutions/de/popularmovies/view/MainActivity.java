@@ -18,15 +18,14 @@ import javax.inject.Inject;
 @ContentView(R.layout.activity_movie)
 public class MainActivity extends RoboActionBarActivity {
 
+    @InjectView(R.id.toolbar)
+    protected Toolbar toolbar;
+
     @Inject
     private SharedPreferences sharedPreferences;
 
     @InjectResource(R.string.movieSortingPreferenceKey)
     private String movieSortingPreferenceKey;
-
-
-    @InjectView(R.id.toolbar)
-    protected Toolbar toolbar;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

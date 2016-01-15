@@ -3,7 +3,6 @@ package pqsolutions.de.popularmovies.view;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,8 @@ import java.util.ArrayList;
 
 public class MovieOverviewFragment extends RoboFragment implements Function<MovieSearchResult, Void>, SharedPreferences.OnSharedPreferenceChangeListener, AdapterView.OnItemClickListener {
 
+    public static final String MOVIE_LIST_BUNDLE_KEY = "movieList";
+
     @Inject
     private SharedPreferences sharedPreferences;
 
@@ -32,7 +33,6 @@ public class MovieOverviewFragment extends RoboFragment implements Function<Movi
 
     @InjectResource(R.string.movieDataExtra)
     private String movieDataExtra;
-
 
     @Inject
     private MovieLoaderTask movieLoaderTask;
@@ -65,7 +65,7 @@ public class MovieOverviewFragment extends RoboFragment implements Function<Movi
         if (savedInstanceState == null) {
             loadMovieData();
         } else {
-            ArrayList movieList = savedInstanceState.getParcelableArrayList("movieList");
+            ArrayList movieList = savedInstanceState.getParcelableArrayList(MOVIE_LIST_BUNDLE_KEY);
             if (movieList != null) {
                 this.movieOverviewAdapter.setMovieList(movieList);
             }
@@ -92,7 +92,7 @@ public class MovieOverviewFragment extends RoboFragment implements Function<Movi
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList("movieList", this.movieOverviewAdapter.getMovieList());
+        outState.putParcelableArrayList(MOVIE_LIST_BUNDLE_KEY, this.movieOverviewAdapter.getMovieList());
     }
 
     @Override

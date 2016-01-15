@@ -10,13 +10,13 @@ import roboguice.inject.InjectView;
 import javax.inject.Inject;
 
 @ContentView(R.layout.activity_movie)
-public class MovieDetailActivity extends RoboActionBarActivity  {
-
-    @Inject
-    private MovieDetailFragment movieDetailFragment;
+public class MovieDetailActivity extends RoboActionBarActivity {
 
     @InjectView(R.id.toolbar)
     protected Toolbar toolbar;
+
+    @Inject
+    private MovieDetailFragment movieDetailFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

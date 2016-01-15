@@ -19,7 +19,9 @@ public class MovieLoaderTaskImpl implements MovieLoaderTask {
     MovieService movieService;
 
     private Function<MovieSearchResult, Void> executeWhenMoviesLoaded;
+
     private MovieService.MovieServiceException exceptionDuringDataLoading;
+
     private Function<MovieService.MovieServiceException, Void> executeWhenErrorOccurred;
 
 

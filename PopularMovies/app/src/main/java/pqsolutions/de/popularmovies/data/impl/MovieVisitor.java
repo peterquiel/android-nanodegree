@@ -19,7 +19,9 @@ public class MovieVisitor implements JsonVisitor {
     private static final String logTag = MovieVisitor.class.getSimpleName();
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
     private List<Movie> movies = new ArrayList<>();
+
     private MovieImpl movie;
 
 
@@ -77,7 +79,7 @@ public class MovieVisitor implements JsonVisitor {
 
     @Override
     public void handle(String key, JSONObject value) throws JSONException {
-        if (!value.isNull("title") && !value.isNull("overview")){
+        if (!value.isNull("title") && !value.isNull("overview")) {
             movie = new MovieImpl();
             this.movies.add(this.movie);
         }

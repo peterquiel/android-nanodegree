@@ -12,7 +12,9 @@ import java.util.Iterator;
 public class JsonVisitableImpl implements JsonVisitable, JsonVisitor {
 
     private JSONArray jsonArray = null;
+
     private JSONObject jsonObject = null;
+
     private JsonVisitor visitor;
 
     @Override

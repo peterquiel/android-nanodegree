@@ -1,9 +1,7 @@
 package pqsolutions.de.popularmovies.util.impl;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import pqsolutions.de.popularmovies.R;
 import pqsolutions.de.popularmovies.data.Movie;

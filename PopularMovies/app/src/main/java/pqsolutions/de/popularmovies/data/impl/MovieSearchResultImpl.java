@@ -1,9 +1,9 @@
 package pqsolutions.de.popularmovies.data.impl;
 
-import java.util.List;
-
 import pqsolutions.de.popularmovies.data.Movie;
 import pqsolutions.de.popularmovies.data.MovieSearchResult;
+
+import java.util.List;
 
 /**
  * Created by Peter Quiel on 11.11.15.
@@ -11,8 +11,11 @@ import pqsolutions.de.popularmovies.data.MovieSearchResult;
 public class MovieSearchResultImpl implements MovieSearchResult {
 
     private final int totalPages;
+
     private final int page;
+
     private final int totalResults;
+
     private final List<Movie> movies;
 
     public MovieSearchResultImpl(int page, int totalPages, int totalResults, List<Movie> movies) {

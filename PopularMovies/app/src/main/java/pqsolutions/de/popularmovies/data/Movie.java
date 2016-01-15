@@ -2,14 +2,13 @@ package pqsolutions.de.popularmovies.data;
 
 import android.os.Parcelable;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Peter Quiel on 11.11.15.
  */
-public interface Movie extends Parcelable{
+public interface Movie extends Parcelable {
 
     Integer getId();
 
