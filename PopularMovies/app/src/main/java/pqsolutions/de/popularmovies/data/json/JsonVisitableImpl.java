@@ -38,7 +38,6 @@ public class JsonVisitableImpl implements JsonVisitable, JsonVisitor {
         this.handle(null, this.jsonObject);
     }
 
-
     @Override
     public void handle(String key, Object value) {
         try {

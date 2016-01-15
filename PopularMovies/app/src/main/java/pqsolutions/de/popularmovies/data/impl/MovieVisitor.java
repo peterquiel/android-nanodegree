@@ -24,7 +24,6 @@ public class MovieVisitor implements JsonVisitor {
 
     private MovieImpl movie;
 
-
     @Override
     public void handle(String key, Object value) {
 

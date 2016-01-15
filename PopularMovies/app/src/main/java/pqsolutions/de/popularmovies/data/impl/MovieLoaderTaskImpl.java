@@ -24,7 +24,6 @@ public class MovieLoaderTaskImpl implements MovieLoaderTask {
 
     private Function<MovieService.MovieServiceException, Void> executeWhenErrorOccurred;
 
-
     @Override
     public void loadMovies(Params params) {
         new BackgroundLoader().execute(params);
@@ -39,7 +38,6 @@ public class MovieLoaderTaskImpl implements MovieLoaderTask {
     public void setErrorHandler(Function<MovieService.MovieServiceException, Void> executeWhenErrorOccurred) {
         this.executeWhenErrorOccurred = executeWhenErrorOccurred;
     }
-
 
     class BackgroundLoader extends AsyncTask<MovieLoaderTask.Params, Void, MovieSearchResult> {
 

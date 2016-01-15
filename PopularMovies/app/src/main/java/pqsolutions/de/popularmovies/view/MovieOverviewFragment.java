@@ -20,7 +20,6 @@ import roboguice.inject.InjectView;
 import javax.inject.Inject;
 import java.util.ArrayList;
 
-
 public class MovieOverviewFragment extends RoboFragment implements Function<MovieSearchResult, Void>, SharedPreferences.OnSharedPreferenceChangeListener, AdapterView.OnItemClickListener {
 
     public static final String MOVIE_LIST_BUNDLE_KEY = "movieList";
@@ -54,7 +53,6 @@ public class MovieOverviewFragment extends RoboFragment implements Function<Movi
         return inflater.inflate(R.layout.fragment_movie_overview, container, false);
     }
 
-
     @Override
     @SuppressWarnings("unchecked")
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -71,7 +69,6 @@ public class MovieOverviewFragment extends RoboFragment implements Function<Movi
             }
         }
     }
-
 
     private void loadMovieData() {
         MovieLoaderTask.Params sorting = MovieLoaderTask.Params.fromInt(sharedPreferences.getInt(movieSortingPreferenceKey, 1));

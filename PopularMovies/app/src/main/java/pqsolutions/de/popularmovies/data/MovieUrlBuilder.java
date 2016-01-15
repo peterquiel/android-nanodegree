@@ -27,7 +27,6 @@ public interface MovieUrlBuilder {
 
     interface CommonParameterBuilder {
 
-
         /**
          * ISO 639-1 code for the language. This is the two letter language abbreviation, like US, EN, FR aso.
          *
@@ -35,7 +34,6 @@ public interface MovieUrlBuilder {
          * @return <code>this</code>.
          */
         CommonParameterBuilder language(String locale);
-
 
         /**
          * Returns finally the url that has been build.

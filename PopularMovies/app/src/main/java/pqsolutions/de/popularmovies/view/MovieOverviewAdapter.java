@@ -19,7 +19,6 @@ import java.util.ArrayList;
  */
 public class MovieOverviewAdapter extends BaseAdapter {
 
-
     @Inject
     private MovieImageHandler movieImageHandler;
 

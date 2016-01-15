@@ -45,5 +45,4 @@ public class MovieSearchResultImpl implements MovieSearchResult {
         return this.movies;
     }
 
-
 }

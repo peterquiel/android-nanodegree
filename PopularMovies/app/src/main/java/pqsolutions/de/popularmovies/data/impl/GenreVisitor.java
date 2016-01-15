@@ -18,7 +18,6 @@ public class GenreVisitor implements JsonVisitor {
 
     private GenreImpl genre = new GenreImpl();
 
-
     @Override
     public void handle(String key, Object value) {
 

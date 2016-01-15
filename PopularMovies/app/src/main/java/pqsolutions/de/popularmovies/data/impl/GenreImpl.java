@@ -57,5 +57,4 @@ public class GenreImpl implements Genre {
         dest.writeInt(this.id);
     }
 
-
 }

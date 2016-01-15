@@ -14,7 +14,6 @@ import roboguice.inject.InjectView;
 
 import javax.inject.Inject;
 
-
 @ContentView(R.layout.activity_movie)
 public class MainActivity extends RoboActionBarActivity {
 
@@ -49,7 +48,6 @@ public class MainActivity extends RoboActionBarActivity {
     private void updateSortingPreference(MovieLoaderTask.Params sorting) {
         this.sharedPreferences.edit().putInt(this.movieSortingPreferenceKey, sorting.getKey()).apply();
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

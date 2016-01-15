@@ -32,7 +32,6 @@ public class MovieServiceMock extends AbstractMovieService implements MovieServi
         return this.loadMoviesFromFile();
     }
 
-
     @Override
     public List<Genre> genre() throws MovieServiceException {
         return null;

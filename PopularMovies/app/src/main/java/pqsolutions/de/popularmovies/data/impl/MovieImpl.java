@@ -149,7 +149,6 @@ public class MovieImpl implements Movie {
         return this;
     }
 
-
     @Override
     public List<Genre> getGenres() {
         return genres;
